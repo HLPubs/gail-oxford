@@ -1,0 +1,150 @@
+// =============================================================================
+// Quire-entry.scss
+// -----------------------------------------------------------------------------
+// Entry-layout specific styles (catalogue-style pages with prominent images at
+// the beginning). The main text content area of this page uses the .quire-page
+// class and sub-classes, but elements specific to this layout use .quire-entry
+// instead.
+
+// scss-lint:disable EmptyRule
+
+// Variables
+// -----------------------------------------------------------------------------
+$color-primary: #3273dc !default;
+$dark: #363636 !default;
+$light: #f5f5f5 !default;
+
+$navbar-height: 3rem !default;
+$quire-entry-header-height: 6rem !default;
+
+$quire-entry-image-color: $dark !default;
+$quire-entry-image-icons-color: $white !default;
+$quire-page-link-color: $color-primary !default;
+
+
+// .quire-entry
+// -----------------------------------------------------------------------------
+.quire-entry {
+  &__image {
+    @include foreground-color($quire-entry-image-color,$quire-entry-image-icons-color);
+    background-color: $quire-entry-image-color;
+    height: calc(100vh - #{$quire-entry-header-height} - #{$navbar-height});
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__group-container,
+    figure {
+      flex: 1 1 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    img {
+      margin: 0 auto;
+      max-height: 100%;
+    }
+
+    .quire-image-control {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      font-size: .8rem;
+      border-color: darken($quire-entry-image-icons-color, 15%);
+      height: 2.25rem;
+      z-index: 10;
+
+      &.quire-image-info {
+        background-color: darken($quire-entry-image-color, 5%);
+        right: 4.5rem;
+        max-width: 400px;
+        display: none;
+        padding: 1rem 1rem 2.5rem 1rem;
+        border-radius: 3px;
+        z-index: 1;
+        height: auto;
+      }
+
+      .quire-image-info__caption {
+        display: inline-block;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      &--more {
+        right: 4.5rem;
+
+        &:hover,
+        &:focus {
+          border-left-width: 0;
+          border-top-width: 0;
+          + .quire-image-info,
+          + .quire-image-info {
+            display: block;
+            border: 1px solid darken($quire-entry-image-icons-color, 15%);
+          }
+        }
+
+      }
+
+      &--prev-image {
+        top: calc(50% - 2.25rem);
+        left: 0;
+        right: initial;
+        border-left-width: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      &--next-image {
+        top: calc(50% - 2.25rem);
+        right: 0;
+        left: initial;
+        border-right-width: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      svg {
+        position: relative;
+        height: 1.5em;
+        width: 1.5em;
+        & img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          max-height: 1.5em;
+        }
+      }
+    }
+  }
+
+  &__header {
+    margin-bottom: 3rem;
+    padding-top: .25rem;
+  }
+
+  &__tombstone {
+    padding-top: 0;
+    svg {
+      position: relative;
+      height: 1.25em;
+      width: 1.25em;
+      margin-left: .5em;
+      fill: $quire-page-link-color;
+      & img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        max-height: 1.5em;
+      }
+    }
+  }
+
+  .quire-page__content {
+    padding-top: 1.5rem;
+  }
+}
